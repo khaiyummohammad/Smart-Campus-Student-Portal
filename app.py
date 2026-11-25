@@ -399,13 +399,13 @@ def logout():
 
 
 # START APPLICATION
-if __name__ == "__main__":
-    create_tables()
-    add_demo_student()
-    add_demo_attendance()
-    add_demo_assignments()
-    add_demo_timetable()
-    add_demo_announcements()
-    add_demo_materials()
+create_tables()
+add_demo_student()
+add_demo_attendance()
+add_demo_assignments()
+add_demo_timetable()
+add_demo_announcements()
+add_demo_materials()
 
+if __name__ == "__main__":
     app.run(debug=True)
