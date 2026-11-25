@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Campus - Timetable</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0f172a;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid #334155;
+        }
+
+        th {
+            color: #38bdf8;
+            background: #172033;
+        }
+
+        tr:hover {
+            background: #263449;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 25px;
+            color: #38bdf8;
+            text-decoration: none;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        @media(max-width: 600px) {
+            body {
+                padding: 15px;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📅 My Timetable</h1>
+    <p class="subtitle">Your weekly academic schedule</p>
+
+    <div class="card">
+
+        <h2>Weekly Class Schedule</h2>
+
+        <div class="table-wrapper">
+
+            <table>
+                <tr>
+                    <th>Day</th>
+                    <th>Subject</th>
+                    <th>Time</th>
+                    <th>Room</th>
+                </tr>
+
+                {% for row in timetable_data %}
+                <tr>
+                    <td>{{ row["day"] }}</td>
+                    <td>{{ row["subject"] }}</td>
+                    <td>{{ row["time"] }}</td>
+                    <td>{{ row["room"] }}</td>
+                </tr>
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <a href="{{ url_for('dashboard') }}" class="back">← Back to Dashboard</a>
+
+</div>
+
+</body>
+</html>

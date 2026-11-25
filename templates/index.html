@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Campus | Login</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #0f172a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: white;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: #111827;
+            border: 1px solid #263449;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        .left {
+            padding: 60px 40px;
+            background: linear-gradient(145deg, #1d4ed8, #6d28d9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .left h1 {
+            font-size: 38px;
+            margin-bottom: 20px;
+        }
+
+        .left p {
+            line-height: 1.8;
+            color: #e0e7ff;
+        }
+
+        .icon {
+            font-size: 60px;
+            margin-bottom: 25px;
+        }
+
+        .right {
+            padding: 50px 40px;
+        }
+
+        .right h2 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #cbd5e1;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            outline: none;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        input:focus {
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 3px rgba(56,189,248,0.1);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #2563eb, #7c3aed);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            opacity: 0.85;
+            transform: translateY(-2px);
+        }
+
+        .error {
+            background: #7f1d1d;
+            color: #fecaca;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 18px;
+        }
+
+        .register {
+            text-align: center;
+            margin-top: 22px;
+            color: #94a3b8;
+        }
+
+        .register a {
+            color: #38bdf8;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            color: #64748b;
+            margin-top: 30px;
+            font-size: 12px;
+        }
+
+        @media(max-width: 750px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .left {
+                padding: 35px;
+            }
+
+            .left h1 {
+                font-size: 30px;
+            }
+
+            .right {
+                padding: 35px 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="left">
+        <div class="icon">🎓</div>
+        <h1>Smart Campus</h1>
+        <p>
+            Your digital academic companion.
+            Access attendance, assignments, timetable,
+            announcements and study materials
+            from one place.
+        </p>
+    </div>
+
+    <div class="right">
+
+        <h2>Welcome Back!</h2>
+        <p class="subtitle">Login to your student account</p>
+
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+
+        <form action="{{ url_for('login') }}" method="POST">
+
+            <label>Enrollment Number</label>
+            <input
+                type="text"
+                name="enrollment"
+                placeholder="Enter enrollment number"
+                required
+            >
+
+            <label>Password</label>
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter password"
+                required
+            >
+
+            <button type="submit">Login to Dashboard</button>
+
+        </form>
+
+        <div class="register">
+            Don't have an account?
+            <a href="{{ url_for('register') }}">Register</a>
+        </div>
+
+        <div class="footer">
+            Smart Campus Portal © 2026
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

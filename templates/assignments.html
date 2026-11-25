@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assignments - Smart Campus</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px;
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #38bdf8;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .assignment-card {
+            background: #1e293b;
+            padding: 22px;
+            margin-bottom: 20px;
+            border-radius: 14px;
+            border: 1px solid #334155;
+            transition: 0.3s;
+        }
+
+        .assignment-card:hover {
+            transform: translateY(-3px);
+            border-color: #38bdf8;
+        }
+
+        .assignment-card h2 {
+            margin-top: 0;
+            color: #38bdf8;
+        }
+
+        .assignment-card p {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        .due-date {
+            color: #fbbf24;
+            font-weight: bold;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+
+        .pending {
+            background: #422006;
+            color: #fbbf24;
+        }
+
+        .completed {
+            background: #064e3b;
+            color: #4ade80;
+        }
+
+        .complete-btn {
+            background: #22c55e;
+            color: #052e16;
+            border: none;
+            padding: 11px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .complete-btn:hover {
+            background: #16a34a;
+        }
+
+        .back-btn {
+            display: inline-block;
+            text-decoration: none;
+            background: #38bdf8;
+            color: #082f49;
+            padding: 11px 18px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+        .empty {
+            text-align: center;
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <a href="/dashboard" class="back-btn">← Back to Dashboard</a>
+
+    <h1>📚 My Assignments</h1>
+
+    {% if assignments %}
+
+        {% for assignment in assignments %}
+
+        <div class="assignment-card">
+
+            <h2>{{ assignment['title'] }}</h2>
+
+            <p><strong>Subject:</strong> {{ assignment['subject'] }}</p>
+
+            <p>{{ assignment['description'] }}</p>
+
+            <p class="due-date">
+                📅 Due Date: {{ assignment['due_date'] }}
+            </p>
+
+            {% if assignment['status'] == 'Completed' %}
+
+                <span class="status completed">
+                    ✓ Completed
+                </span>
+
+            {% else %}
+
+                <span class="status pending">
+                    ⏳ Pending
+                </span>
+
+                <form action="/complete_assignment/{{ assignment['id'] }}" method="POST">
+
+                    <button type="submit" class="complete-btn">
+                        Mark as Completed ✓
+                    </button>
+
+                </form>
+
+            {% endif %}
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="empty">
+            <h2>No Assignments Found</h2>
+            <p>Currently you don't have any assignments.</p>
+        </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,290 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Campus Dashboard</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+        }
+
+        .sidebar {
+            width: 230px;
+            height: 100vh;
+            background: #111827;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 25px 15px;
+            border-right: 1px solid #334155;
+        }
+
+        .sidebar h2 {
+            color: #38bdf8;
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .sidebar a {
+            display: block;
+            text-decoration: none;
+            color: #cbd5e1;
+            padding: 13px;
+            margin: 8px 0;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background: #1e293b;
+            color: #38bdf8;
+        }
+
+        .main {
+            margin-left: 230px;
+            padding: 30px;
+        }
+
+        .welcome {
+            background: #1e293b;
+            padding: 25px;
+            border-radius: 14px;
+            border: 1px solid #334155;
+            margin-bottom: 25px;
+        }
+
+        .welcome h1 {
+            margin-top: 0;
+            color: #38bdf8;
+        }
+
+        .welcome p {
+            color: #cbd5e1;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 23px;
+            border-radius: 14px;
+            border: 1px solid #334155;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: #38bdf8;
+        }
+
+        .card h3 {
+            color: #94a3b8;
+            font-size: 15px;
+        }
+
+        .card h2 {
+            font-size: 32px;
+            margin: 10px 0;
+            color: #38bdf8;
+        }
+
+        .progress-section {
+            background: #1e293b;
+            padding: 25px;
+            margin-top: 25px;
+            border-radius: 14px;
+            border: 1px solid #334155;
+        }
+
+        .progress-section h2 {
+            color: #38bdf8;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 18px;
+            background: #334155;
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #22c55e;
+            border-radius: 20px;
+        }
+
+        .progress-text {
+            color: #cbd5e1;
+        }
+
+        .quick-links {
+            margin-top: 25px;
+        }
+
+        .quick-links h2 {
+            color: #38bdf8;
+        }
+
+        .quick-links a {
+            display: inline-block;
+            text-decoration: none;
+            color: #0f172a;
+            background: #38bdf8;
+            padding: 12px 17px;
+            border-radius: 8px;
+            margin: 8px 8px 8px 0;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .quick-links a:hover {
+            background: #0ea5e9;
+        }
+
+        .logout {
+            color: #f87171 !important;
+        }
+
+        @media (max-width: 750px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 18px;
+            }
+
+            .sidebar a {
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <h2>🎓 Smart Campus</h2>
+
+    <a href="/dashboard">🏠 Dashboard</a>
+    <a href="/attendance">📊 Attendance</a>
+    <a href="/assignments">📝 Assignments</a>
+    <a href="/timetable">🕒 Timetable</a>
+    <a href="/announcements">📢 Announcements</a>
+    <a href="/materials">📚 Study Materials</a>
+    <a href="/profile">👤 My Profile</a>
+    <a href="/logout" class="logout">🚪 Logout</a>
+
+</div>
+
+
+<div class="main">
+
+    <div class="welcome">
+
+        <h1>Welcome, {{ student_name }} 👋</h1>
+
+        <p>Welcome to your Smart Campus Student Dashboard.</p>
+
+        <p>
+            <strong>Enrollment Number:</strong> {{ enrollment }}
+        </p>
+
+    </div>
+
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>📊 Attendance Percentage</h3>
+            <h2>{{ attendance_percentage }}%</h2>
+            <p>Overall Attendance</p>
+        </div>
+
+        <div class="card">
+            <h3>📝 Total Assignments</h3>
+            <h2>{{ total_assignments }}</h2>
+            <p>All Assignments</p>
+        </div>
+
+        <div class="card">
+            <h3>✅ Completed Assignments</h3>
+            <h2>{{ completed_assignments }}</h2>
+            <p>Successfully Completed</p>
+        </div>
+
+        <div class="card">
+            <h3>⏳ Pending Assignments</h3>
+            <h2>{{ pending_assignments }}</h2>
+            <p>Yet to Complete</p>
+        </div>
+
+        <div class="card">
+            <h3>🕒 Timetable Classes</h3>
+            <h2>{{ total_timetable }}</h2>
+            <p>Scheduled Classes</p>
+        </div>
+
+        <div class="card">
+            <h3>📢 Announcements</h3>
+            <h2>{{ total_announcements }}</h2>
+            <p>Campus Updates</p>
+        </div>
+
+    </div>
+
+
+    <div class="progress-section">
+
+        <h2>📈 Assignment Progress</h2>
+
+        <p class="progress-text">
+            {{ completed_assignments }} out of {{ total_assignments }} assignments completed
+        </p>
+
+        <div class="progress-bar">
+
+            <div class="progress-fill"
+                 style="width: {{ completion_percentage }}%;">
+            </div>
+
+        </div>
+
+        <h3>{{ completion_percentage }}% Completed</h3>
+
+    </div>
+
+
+    <div class="quick-links">
+
+        <h2>Quick Access</h2>
+
+        <a href="/attendance">View Attendance</a>
+        <a href="/assignments">View Assignments</a>
+        <a href="/timetable">View Timetable</a>
+        <a href="/materials">Study Materials</a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
